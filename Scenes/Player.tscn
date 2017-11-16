@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Player/Walk/PlayerLR0.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Player/Walk/PlayerLR1.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Player/Walk/PlayerLR2.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Player/Walk/PlayerD0.png" type="Texture" id=5]
+[ext_resource path="res://Textures/Player/Walk/PlayerD1.png" type="Texture" id=6]
+[ext_resource path="res://Textures/Player/Walk/PlayerD2.png" type="Texture" id=7]
+[ext_resource path="res://Textures/Player/Walk/PlayerU0.png" type="Texture" id=8]
+[ext_resource path="res://Textures/Player/Walk/PlayerU1.png" type="Texture" id=9]
+[ext_resource path="res://Textures/Player/Walk/PlayerU2.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walkLeft_Right",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "walkDown",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "walkUp",
+"speed": 6.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4.01373, 9.50807 )
+
+[node name="Player" type="KinematicBody2D"]
+
+position = Vector2( 400, 230 )
+scale = Vector2( 2, 2 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+SPEED = 100
+
+[node name="MainCamera" type="Camera2D" parent="."]
+
+position = Vector2( 2.45547, 5.52481 )
+anchor_mode = 1
+rotating = true
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 20.0
+drag_margin_left = 0.25
+drag_margin_top = 0.25
+drag_margin_right = 0.25
+drag_margin_bottom = 0.25
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Smoothing" ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+
+frames = SubResource( 1 )
+animation = "walkLeft_Right"
+centered = false
+flip_h = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+position = Vector2( 5, 9.5 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+
