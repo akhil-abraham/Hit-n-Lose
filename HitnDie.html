@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 	<meta charset="utf-8" />
-	<title>Hit n' Die</title>
+	<title></title>
 	<style type="text/css">
 
 		body {
@@ -350,7 +350,7 @@
 				};
 
 				function printError(text) {
-					if (!text.startsWith('**ERROR**: ')) {
+					if (!String.prototype.trim.call(text).startsWith('**ERROR**: ')) {
 						text = '**ERROR**: ' + text;
 					}
 					print(text);
